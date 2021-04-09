@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Zgłoś problem{% endblock %}
+
+{% block content %}
+
+<h1>Zgłoś problem</h1>
+<center>
+<div class="col-md-6 post">
+    <p style="color: green; font-weight: bold; ">{{ added }}</p>
+    <form method="post">
+    <div class="row">
+        <div class="col-md-3">
+            <p>Temat:</p>
+        </div>
+        <div class="col-md-9">
+            <input name="subject" type="text" class="form-control" />
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <div class="col-md-3">
+            <p>Treść:</p>
+        </div>
+        <div class="col-md-9">
+            <textarea name="content" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <div class="col-md-3">
+            <p></p>
+        </div>
+        <div class="col-md-9">
+            <input type="submit" value="Zgłoś problem" class="btn btn-primary"/>
+        </div>
+    </div>
+    </form>
+</div>
+</center>
+
+{% endblock %}

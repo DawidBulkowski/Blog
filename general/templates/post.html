@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<style>
+    .onepost { padding: 20px; }
+    .onepost .title { text-align: center; font-size: 2.4em; padding: 10px; background-color: #EFEFEF; }
+    .onepost .date { margin: 0; padding: 0; }
+    .onepost .category { margin: 0; padding: 0; }
+    .postDesc { padding: 30px; }
+    .add-comment { background-color: #EFEFEF; padding: 15px; }
+
+    .date { font-style: italic; }
+    .comment { margin-bottom: 10px; }
+</style>
+
+<div class="row onepost">
+    <div class="col-md-12">
+        <p class="title">{{ post.title }}</p>
+        <p class="date">Opublikowano {{ post.creation_date }}</p>
+        <p class="category">Kategoria: {{ post.category.name }}</p>
+    </div>
+    <div class="col-md-12">
+        <center><img src="{{ post.image.url }}" style="width: 50%;" /></center>
+    </div>
+    <div class="col-md-12 postDesc">
+        <p>{{ post.text|safe }}</p>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row add-comment">
+            <p style="color: green; font-weight: bold; ">{{ added }}</p>
+            <form method="post">
+                <div class="col-md-4">
+                    <input type="text" name="comment" class="form-control" placeholder="Wprowadź komentarz" required />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="nick" class="form-control" placeholder="Wprowadź nick" required />
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Dodaj komentarz" class="btn btn-primary"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h3>Komentarze</h3>
+        {% if comments %}
+            {% for comment in comments %}
+                <p class="date">{{ comment.creation_date }} wystawione przez <b>{{ comment.nick }}</b></p>
+                <p class="comment">{{ comment.comment }}</p>
+            {% endfor %}
+        {% else %}
+            Brak komentarzy
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

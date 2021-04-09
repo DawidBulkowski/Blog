@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Posty z {{ category.name }}{% endblock %}
+
+{% block content %}
+
+<center><h1>Posty z {{ category.name }}</h1></center>
+
+{% for post in posts %}
+<div class="col-md-12 post">
+    <div class="col-md-4">
+        <center><img src="{{ post.image.url }}" style="width: 80%;" /></center>
+    </div>
+    <div class="col-md-8">
+        <p class="date">Opublikowano {{ post.creation_date }}, kategoria: {{ post.category.name }}</p>
+        <a href="/post/{{ post.slug }}"><h4>{{ post.title }}</h4></a>
+        <p>{{ post.short }}</p>
+        <a href="/post/{{ post.slug }}"><button class="btn btn-primary">Czytaj dalej</button></a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
